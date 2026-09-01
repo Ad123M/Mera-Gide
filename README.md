@@ -1,567 +1,498 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mera-Gide · Ayurveda</title>
-  <!-- Font Awesome Icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Mera‑Gide · Green Ayurveda</title>
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-      background: #f5f2ec;
-      color: #1e3a2f;
-      padding: 1.5rem;
+      background: #f8fbf7;
+      color: #1e2f23;
+      line-height: 1.5;
+    }
+
+    /* natural green palette */
+    :root {
+      --green-dark: #1e4a2b;
+      --green-mid: #2f6b3a;
+      --green-light: #5d8f6b;
+      --green-pale: #e2f0e0;
+      --green-bg: #f0f7ee;
+      --gold: #b68b40;
+      --cream: #fcf9f2;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(30, 50, 30, 0.08);
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .container {
       max-width: 1300px;
       margin: 0 auto;
-      background: #ffffff;
-      border-radius: 32px;
-      box-shadow: 0 20px 40px rgba(0, 20, 10, 0.08);
-      padding: 2rem 2.5rem;
-      transition: 0.25s;
+      padding: 0 20px;
     }
 
-    /* ----- HEADER / LOGO & NAV ----- */
-    .header {
+    /* logo & branding */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--green-dark);
+    }
+
+    .logo i {
+      font-size: 2.2rem;
+      color: var(--green-mid);
+      background: var(--green-pale);
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    .logo span {
+      background: linear-gradient(145deg, #1e4a2b, #3d7a4a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* header / nav */
+    .navbar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid #eae3da;
-      padding-bottom: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-icon {
-      background: #1e4d3a;
-      color: #f5efe8;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      box-shadow: 0 6px 12px rgba(26, 67, 45, 0.15);
-    }
-
-    .logo-text {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #1a3b2c;
-    }
-    .logo-text span {
-      font-weight: 300;
-      color: #5d7e6b;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(30, 74, 43, 0.08);
+      background: var(--white);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      padding-left: 24px;
+      padding-right: 24px;
     }
 
     .nav-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 18px;
       font-weight: 500;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #2d4f3d;
-      font-size: 1.05rem;
-      transition: 0.2s;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 4px;
-    }
-    .nav-links a:hover {
-      border-bottom-color: #4b7b5e;
-      color: #0d2b1d;
-    }
-
-    /* ----- ADMIN UPLOAD CARD (prominent) ----- */
-    .admin-upload-section {
-      background: #f0f7f2;
-      border-radius: 28px;
-      padding: 2rem 2.2rem;
-      margin-bottom: 2.8rem;
-      border: 1px solid #d7e3da;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
-    }
-
-    .admin-upload-grid {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .upload-box {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .upload-box label {
-      background: #ffffff;
-      padding: 0.8rem 1.6rem;
-      border-radius: 60px;
-      border: 1px dashed #5f8b72;
-      color: #1a3b2c;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.2s;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-    .upload-box label:hover {
-      background: #e4efe7;
-      border-color: #2f6b4a;
-    }
-    .upload-box label i {
-      color: #2a6b47;
-      font-size: 1.3rem;
-    }
-    #fileInput {
-      display: none;
-    }
-    .file-preview {
       font-size: 0.95rem;
-      background: #fff;
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      color: #29543b;
-      border: 1px solid #c6d9cd;
     }
 
-    .admin-buttons {
+    .nav-links a {
+      padding: 6px 4px;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--green-mid);
+      color: var(--green-dark);
+    }
+
+    .nav-actions {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
     }
 
     .btn {
-      border: none;
-      padding: 0.9rem 2.2rem;
+      display: inline-block;
+      background: var(--green-mid);
+      color: white;
+      padding: 10px 22px;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      font-size: 0.9rem;
+      border: none;
       cursor: pointer;
-      transition: 0.2s;
-      background: #f0f0f0;
-      color: #1e3a2f;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(47, 107, 58, 0.15);
     }
 
-    .btn-primary {
-      background: #1e4d3a;
-      color: white;
-      box-shadow: 0 6px 14px rgba(27, 77, 53, 0.25);
-    }
-    .btn-primary:hover {
-      background: #123b2b;
-      transform: scale(1.01);
-    }
     .btn-outline {
       background: transparent;
-      border: 2px solid #1e4d3a;
-      color: #1e4d3a;
-    }
-    .btn-outline:hover {
-      background: #1e4d3a0c;
-    }
-    .btn-success {
-      background: #1f6e47;
-      color: white;
-      box-shadow: 0 6px 14px rgba(27, 77, 53, 0.2);
-    }
-    .btn-success:hover {
-      background: #135536;
-    }
-    .btn-warning {
-      background: #cf9e4b;
-      color: #1f2d21;
-    }
-    .btn-warning:hover {
-      background: #c08d37;
+      color: var(--green-dark);
+      border: 1.5px solid var(--green-mid);
+      box-shadow: none;
     }
 
-    /* ----- SELLER & PAYMENT PROCESS CARDS ----- */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 2.5rem 0 2.8rem 0;
+    .btn-gold {
+      background: var(--gold);
+      box-shadow: 0 4px 8px rgba(182, 139, 64, 0.2);
     }
 
-    .process-card {
-      background: #fafcfa;
-      border-radius: 24px;
-      padding: 1.8rem 1.8rem 2rem;
-      border: 1px solid #e2ede6;
-      transition: 0.2s;
-      box-shadow: 0 6px 12px rgba(0, 20, 10, 0.02);
-    }
-    .process-card:hover {
-      border-color: #b9cfc0;
-      box-shadow: 0 12px 24px rgba(30, 60, 40, 0.06);
+    .btn-sm {
+      padding: 6px 16px;
+      font-size: 0.8rem;
     }
 
-    .process-card h3 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #173b2a;
-      margin-bottom: 0.8rem;
-    }
-    .process-card h3 i {
-      color: #2f6b4a;
-      font-size: 1.8rem;
-      width: 2rem;
-    }
-    .process-card p {
-      color: #3f5f4b;
-      margin-bottom: 1.6rem;
-      line-height: 1.5;
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
 
-    .card-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 0.5rem;
-    }
-    .card-actions .btn {
-      flex: 1 0 auto;
-      justify-content: center;
-    }
-
-    /* ----- PRODUCT SHOWCASE (Griinar Ayurveda) ----- */
-    .product-showcase {
-      background: #eef5ef;
-      border-radius: 28px;
-      padding: 2rem 2.2rem;
-      margin: 2.8rem 0 2.8rem 0;
-      border: 1px solid #d3e2d7;
+    /* hero */
+    .hero {
+      background: linear-gradient(135deg, #eaf7e6 0%, #d4e8d0 100%);
+      border-radius: var(--radius);
+      padding: 48px 40px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
     }
 
-    .product-info {
-      display: flex;
-      align-items: center;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-    }
-    .product-badge {
-      background: #1e4d3a;
-      color: #f3faf3;
-      padding: 0.6rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.4px;
-    }
-    .product-name {
-      font-size: 1.8rem;
+    .hero-content h1 {
+      font-size: 2.6rem;
       font-weight: 700;
-      color: #0d3321;
-    }
-    .product-name small {
-      font-weight: 400;
-      font-size: 1rem;
-      color: #3f6a51;
-      margin-left: 8px;
+      color: var(--green-dark);
+      max-width: 500px;
     }
 
-    .product-cta .btn {
-      background: #274f39;
-      color: white;
-    }
-    .product-cta .btn:hover {
-      background: #0b3824;
-    }
-
-    /* ----- FOOTER LINKS (About, Contact, T&C, Privacy) ----- */
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2.5rem 3.5rem;
-      border-top: 2px solid #e3e9e3;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      font-size: 1rem;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: #2b4f3a;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.15s;
-      border-bottom: 1px solid transparent;
-    }
-    .footer-links a i {
-      color: #346f4b;
+    .hero-content p {
       font-size: 1.1rem;
-    }
-    .footer-links a:hover {
-      border-bottom-color: #346f4b;
-      color: #0c291d;
-    }
-
-    .footer-copy {
-      text-align: center;
-      margin-top: 1.8rem;
-      color: #5b7d68;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
+      color: #2b4d34;
+      margin: 16px 0 24px;
+      max-width: 440px;
     }
 
-    /* admin upload status */
-    .upload-status {
-      margin-top: 1rem;
-      font-weight: 500;
-      color: #1b4d34;
-      background: #e2efe6;
-      padding: 0.3rem 1.2rem;
+    .hero-image i {
+      font-size: 10rem;
+      color: var(--green-mid);
+      opacity: 0.5;
+      background: rgba(255,255,255,0.3);
+      padding: 20px;
+      border-radius: 50%;
+    }
+
+    /* sections */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin: 40px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--gold);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 18px 14px 20px;
+      box-shadow: var(--shadow);
+      transition: 0.2s;
+      border: 1px solid rgba(47, 107, 58, 0.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: scale(1.01);
+    }
+
+    .product-img {
+      background: var(--green-pale);
+      height: 150px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: var(--green-mid);
+      margin-bottom: 12px;
+    }
+
+    .product-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--green-dark);
+      margin: 6px 0;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: var(--green-pale);
+      color: var(--green-dark);
+      padding: 2px 12px;
       border-radius: 40px;
-      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
     }
+
+    /* seller panel */
+    .seller-panel {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin: 40px 0;
+      border-left: 8px solid var(--gold);
+    }
+
+    .seller-panel h2 {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--green-dark);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 24px 0;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 12px 14px;
+      border: 1px solid #cfdfd0;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      background: var(--cream);
+    }
+
+    .form-group textarea {
+      border-radius: 20px;
+      resize: vertical;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .status-pending { background: #fdebb3; color: #7a6400; }
+    .status-approved { background: #b8e0b8; color: #1f5420; }
+    .status-rejected { background: #fccccc; color: #a13d3d; }
+
+    /* admin */
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 18px;
+      background: var(--white);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 20px 0;
+    }
+
+    .admin-stat {
+      background: var(--green-pale);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .admin-stat i {
+      font-size: 2rem;
+      color: var(--green-mid);
+    }
+
+    /* footer */
+    .footer {
+      background: #1a2d1e;
+      color: #d4e2d0;
+      padding: 40px 0 20px;
+      margin-top: 50px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 30px;
+    }
+
+    .footer a {
+      color: #b8d0b5;
+      display: block;
+      margin: 6px 0;
+    }
+
+    .footer a:hover { color: white; }
 
     /* responsive */
-    @media (max-width: 700px) {
-      .container { padding: 1.5rem; }
-      .header { flex-direction: column; align-items: start; gap: 1rem; }
-      .nav-links { gap: 1.2rem; }
-      .admin-upload-grid { flex-direction: column; align-items: stretch; }
-      .upload-box { flex-direction: column; align-items: stretch; }
-      .admin-buttons { justify-content: stretch; }
-      .admin-buttons .btn { flex: 1; justify-content: center; }
+    @media (max-width: 800px) {
+      .navbar { flex-direction: column; align-items: stretch; gap: 12px; }
+      .nav-links { justify-content: center; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-content h1 { font-size: 2rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
     }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 12px; }
+      .btn { padding: 8px 14px; font-size: 0.8rem; }
+      .logo { font-size: 1.4rem; }
+    }
+
+    /* misc */
+    .flex { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .mt-2 { margin-top: 16px; }
+    .mb-2 { margin-bottom: 16px; }
+    .text-muted { color: #4d6b52; }
+    .border-bottom { border-bottom: 1px solid #dde8db; padding-bottom: 16px; }
+    .review { background: var(--cream); border-radius: var(--radius-sm); padding: 16px; margin: 8px 0; }
   </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- Header with logo -->
-  <header class="header">
-    <div class="logo-area">
-      <div class="logo-icon">MG</div>
-      <div class="logo-text">Mera<span>-Gide</span></div>
+  <!-- header -->
+  <header class="navbar">
+    <div class="logo">
+      <i class="fas fa-leaf"></i>
+      <span>Mera‑Gide</span>
     </div>
-    <div class="nav-links">
-      <a href="#"><i class="fas fa-home"></i> Home</a>
-      <a href="#"><i class="fas fa-seedling"></i> Shop</a>
-      <a href="#"><i class="fas fa-user-md"></i> Ayurveda</a>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Seller</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-sm"><i class="fas fa-search"></i></a>
+      <a href="#" class="btn btn-sm"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#" class="btn btn-sm btn-outline">Login</a>
+      <a href="#" class="btn btn-sm btn-gold">Become a Seller</a>
     </div>
   </header>
 
-  <!-- ADMIN IMAGE UPLOAD SECTION (prominent) -->
-  <section class="admin-upload-section">
-    <div class="admin-upload-grid">
-      <div class="upload-box">
-        <label for="fileInput">
-          <i class="fas fa-cloud-upload-alt"></i> Choose Image
-        </label>
-        <input type="file" id="fileInput" accept="image/*">
-        <span class="file-preview" id="filePreview">No file selected</span>
-      </div>
-      <div class="admin-buttons">
-        <button class="btn btn-primary" id="uploadBtn"><i class="fas fa-upload"></i> Upload</button>
-        <button class="btn btn-outline" id="clearBtn"><i class="fas fa-undo-alt"></i> Clear</button>
-      </div>
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Pure Green Ayurveda</h1>
+      <p>Herbal wellness crafted by nature — discover Mera‑Gide’s authentic Ayurvedic treasures.</p>
+      <a href="#" class="btn btn-gold"><i class="fas fa-store"></i> Shop Now</a>
     </div>
-    <div id="uploadStatus" class="upload-status"><i class="fas fa-check-circle"></i> Ready for upload</div>
+    <div class="hero-image">
+      <i class="fas fa-seedling"></i>
+    </div>
   </section>
 
-  <!-- SELLER + PAYMENT PROCESS (two cards) -->
-  <div class="process-grid">
-    <!-- Seller Process Card -->
-    <div class="process-card">
-      <h3><i class="fas fa-store-alt"></i> Seller Process</h3>
-      <p>Verify & onboard sellers. Manage products, inventory, and orders seamlessly.</p>
-      <div class="card-actions">
-        <button class="btn btn-primary" id="sellerBtn"><i class="fas fa-user-check"></i> Start Seller</button>
-        <button class="btn btn-outline" id="sellerStatusBtn"><i class="fas fa-info-circle"></i> Status</button>
-      </div>
-      <div id="sellerFeedback" style="margin-top: 14px; font-size:0.95rem; color: #1b5b3a;"></div>
-    </div>
-
-    <!-- Payment Process Card -->
-    <div class="process-card">
-      <h3><i class="fas fa-credit-card"></i> Payment Process</h3>
-      <p>Secure payments, refunds & transaction history. Fast & reliable.</p>
-      <div class="card-actions">
-        <button class="btn btn-success" id="paymentBtn"><i class="fas fa-coins"></i> Proceed Payment</button>
-        <button class="btn btn-warning" id="paymentHistoryBtn"><i class="fas fa-clock"></i> History</button>
-      </div>
-      <div id="paymentFeedback" style="margin-top: 14px; font-size:0.95rem; color: #1b5b3a;"></div>
-    </div>
+  <!-- featured + latest products -->
+  <div class="section-title"><i class="fas fa-star"></i> Featured Products</div>
+  <div class="product-grid">
+    <div class="product-card"><div class="product-img"><i class="fas fa-mortar-pestle"></i></div><div class="product-name">Ashwagandha Root</div><div class="product-price">₹499 <span class="badge">-20%</span></div><div class="product-actions"><a href="#" class="btn btn-sm">Buy Now</a><a href="#" class="btn btn-sm btn-outline">Add to Cart</a></div></div>
+    <div class="product-card"><div class="product-img"><i class="fas fa-flask"></i></div><div class="product-name">Tulsi Drops</div><div class="product-price">₹350</div><div class="product-actions"><a href="#" class="btn btn-sm">Buy Now</a><a href="#" class="btn btn-sm btn-outline">Add to Cart</a></div></div>
+    <div class="product-card"><div class="product-img"><i class="fas fa-spa"></i></div><div class="product-name">Neem & Aloe Gel</div><div class="product-price">₹275</div><div class="product-actions"><a href="#" class="btn btn-sm">Buy Now</a><a href="#" class="btn btn-sm btn-outline">Add to Cart</a></div></div>
   </div>
 
-  <!-- Griinar Ayurveda product banner (side) -->
-  <div class="product-showcase">
-    <div class="product-info">
-      <span class="product-badge"><i class="fas fa-leaf"></i> Herbal</span>
-      <span class="product-name">Griinar Ayurveda <small>· traditional wellness</small></span>
-    </div>
-    <div class="product-cta">
-      <button class="btn"><i class="fas fa-shopping-bag"></i> Explore</button>
-    </div>
+  <div class="section-title"><i class="fas fa-clock"></i> Latest Arrivals</div>
+  <div class="product-grid">
+    <div class="product-card"><div class="product-img"><i class="fas fa-oil-can"></i></div><div class="product-name">Sesame Massage Oil</div><div class="product-price">₹620</div><div class="product-actions"><a href="#" class="btn btn-sm">Buy Now</a><a href="#" class="btn btn-sm btn-outline">Add to Cart</a></div></div>
+    <div class="product-card"><div class="product-img"><i class="fas fa-hand-holding-heart"></i></div><div class="product-name">Brahmi Capsules</div><div class="product-price">₹540</div><div class="product-actions"><a href="#" class="btn btn-sm">Buy Now</a><a href="#" class="btn btn-sm btn-outline">Add to Cart</a></div></div>
   </div>
 
-  <!-- FOOTER: About, Contact, Terms, Privacy -->
-  <div class="footer-links">
-    <a href="#"><i class="fas fa-info-circle"></i> About Us</a>
-    <a href="#"><i class="fas fa-envelope"></i> Contact Us</a>
-    <a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
-    <a href="#"><i class="fas fa-lock"></i> Privacy Policy</a>
-  </div>
-  <div class="footer-copy">
-    <i class="fas fa-copyright"></i> 2026 Mera-Gide · Griinar Ayurveda
+  <!-- Seller Panel (Add product) -->
+  <div class="seller-panel">
+    <h2><i class="fas fa-user-plus"></i> Seller Dashboard · Add Product</h2>
+    <div class="flex"><span class="badge">Pending</span><span class="badge" style="background:#b8e0b8;">Approved</span><span class="badge" style="background:#fccccc;">Rejected</span></div>
+    <div class="form-grid">
+      <div class="form-group"><label>Product Name</label><input type="text" value="Triphala Powder" placeholder="e.g. Triphala"></div>
+      <div class="form-group"><label>Category</label><select><option>Herbal Supplements</option><option>Personal Care</option><option>Wellness</option></select></div>
+      <div class="form-group"><label>Price (₹)</label><input type="number" value="450"></div>
+      <div class="form-group"><label>Discount Price</label><input type="number" value="399"></div>
+      <div class="form-group"><label>Stock</label><input type="number" value="120"></div>
+      <div class="form-group"><label>Seller/Brand</label><input type="text" value="GreenRoot Ayurveda"></div>
+      <div class="form-group"><label>Description</label><textarea rows="2">Pure Triphala for digestion & wellness.</textarea></div>
+      <div class="form-group"><label>Benefits</label><textarea rows="2">Supports gut health, natural detox</textarea></div>
+      <div class="form-group"><label>Ingredients</label><textarea rows="2">Amalaki, Bibhitaki, Haritaki</textarea></div>
+      <div class="form-group"><label>Usage Instructions</label><textarea rows="2">Take 1 tsp with warm water</textarea></div>
+      <div class="form-group"><label>Upload Images</label><input type="file" multiple accept="image/*"></div>
+    </div>
+    <div class="flex"><a href="#" class="btn btn-gold"><i class="fas fa-cloud-upload-alt"></i> Submit Product</a> <span class="text-muted">(for admin approval)</span></div>
   </div>
 
+  <!-- admin dashboard snippet -->
+  <div class="section-title"><i class="fas fa-user-shield"></i> Admin Dashboard</div>
+  <div class="admin-grid">
+    <div class="admin-stat"><i class="fas fa-store"></i> 12 Sellers</div>
+    <div class="admin-stat"><i class="fas fa-boxes"></i> 48 Products</div>
+    <div class="admin-stat"><i class="fas fa-tags"></i> 8 Categories</div>
+    <div class="admin-stat"><i class="fas fa-shipping-fast"></i> 23 Orders</div>
+    <div class="admin-stat"><i class="fas fa-edit"></i> Approve / Reject</div>
+    <div class="admin-stat"><i class="fas fa-images"></i> Manage Banners</div>
+  </div>
+  <div class="flex"><a href="#" class="btn btn-sm">Manage Products</a><a href="#" class="btn btn-sm btn-outline">View Sellers</a><a href="#" class="btn btn-sm btn-outline">Orders</a></div>
+
+  <!-- customer reviews -->
+  <div class="section-title"><i class="fas fa-comment-dots"></i> Customer Reviews</div>
+  <div class="review"><i class="fas fa-user-circle"></i> <strong>Priya S.</strong> “Authentic products, fast delivery. Love the Brahmi capsules!” ⭐⭐⭐⭐⭐</div>
+  <div class="review"><i class="fas fa-user-circle"></i> <strong>Arjun M.</strong> “The Triphala powder is high quality. Mera-Gide is my go-to store.” ⭐⭐⭐⭐</div>
+
+  <!-- about -->
+  <div class="section-title"><i class="fas fa-info-circle"></i> About Mera‑Gide</div>
+  <p style="background: white; padding: 20px; border-radius: var(--radius-sm); box-shadow: var(--shadow);">Mera‑Gide is a premium Green Ayurveda wellness destination. We bring you authentic herbal products rooted in ancient wisdom, carefully sourced and crafted for modern well-being. Our mission is to connect you with nature’s finest ingredients — pure, sustainable, and effective.</p>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div><h4>Mera‑Gide</h4><p style="margin-top: 8px;">Green Ayurveda since 2024</p></div>
+      <div><h4>Quick</h4><a href="#">About Us</a><a href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div>
+      <div><h4>Support</h4><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Refund</a></div>
+      <div><h4>Connect</h4><a href="#"><i class="fab fa-instagram"></i> Instagram</a><a href="#"><i class="fab fa-youtube"></i> YouTube</a></div>
+    </div>
+    <div style="border-top: 1px solid #3b5a3b; margin-top: 30px; padding-top: 20px; text-align: center; font-size: 0.9rem;">© 2026 Mera‑Gide · Ayurvedic wellness</div>
+  </footer>
 </div>
-
-<!-- JavaScript for interactions (upload, seller, payment) -->
-<script>
-  (function() {
-    // DOM refs
-    const fileInput = document.getElementById('fileInput');
-    const filePreview = document.getElementById('filePreview');
-    const uploadStatus = document.getElementById('uploadStatus');
-    const uploadBtn = document.getElementById('uploadBtn');
-    const clearBtn = document.getElementById('clearBtn');
-
-    const sellerBtn = document.getElementById('sellerBtn');
-    const sellerStatusBtn = document.getElementById('sellerStatusBtn');
-    const sellerFeedback = document.getElementById('sellerFeedback');
-
-    const paymentBtn = document.getElementById('paymentBtn');
-    const paymentHistoryBtn = document.getElementById('paymentHistoryBtn');
-    const paymentFeedback = document.getElementById('paymentFeedback');
-
-    // ----- IMAGE UPLOAD (admin) -----
-    fileInput.addEventListener('change', function(e) {
-      if (this.files && this.files.length > 0) {
-        filePreview.textContent = this.files[0].name;
-        uploadStatus.innerHTML = `<i class="fas fa-file-image"></i> File ready: ${this.files[0].name}`;
-      } else {
-        filePreview.textContent = 'No file selected';
-        uploadStatus.innerHTML = `<i class="fas fa-check-circle"></i> Ready for upload`;
-      }
-    });
-
-    uploadBtn.addEventListener('click', function() {
-      if (fileInput.files && fileInput.files.length > 0) {
-        const fileName = fileInput.files[0].name;
-        // Simulate upload process
-        uploadStatus.innerHTML = `<i class="fas fa-spinner fa-pulse"></i> Uploading ${fileName} ...`;
-        setTimeout(() => {
-          uploadStatus.innerHTML = `<i class="fas fa-check-circle" style="color: #1a6e41;"></i> ✅ Image "${fileName}" uploaded successfully (admin)`;
-          filePreview.textContent = fileName + ' ✓';
-        }, 1200);
-      } else {
-        uploadStatus.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b47d3a;"></i> No image selected. Please choose a file.`;
-      }
-    });
-
-    clearBtn.addEventListener('click', function() {
-      fileInput.value = '';
-      filePreview.textContent = 'No file selected';
-      uploadStatus.innerHTML = `<i class="fas fa-undo-alt"></i> Cleared. Ready for upload.`;
-    });
-
-    // ----- SELLER PROCESS -----
-    let sellerActive = false;
-    sellerBtn.addEventListener('click', function() {
-      sellerActive = !sellerActive;
-      if (sellerActive) {
-        sellerFeedback.innerHTML = `<i class="fas fa-check-circle" style="color:#1d733d;"></i> Seller process started. Verification in progress...`;
-        sellerBtn.innerHTML = '<i class="fas fa-pause-circle"></i> Stop Seller';
-        sellerBtn.style.background = '#b18a4a';
-      } else {
-        sellerFeedback.innerHTML = `<i class="fas fa-stop-circle"></i> Seller process stopped.`;
-        sellerBtn.innerHTML = '<i class="fas fa-user-check"></i> Start Seller';
-        sellerBtn.style.background = '#1e4d3a';
-      }
-    });
-
-    sellerStatusBtn.addEventListener('click', function() {
-      const status = sellerActive ? '🟢 Active' : '⚪ Inactive';
-      sellerFeedback.innerHTML = `<i class="fas fa-info-circle"></i> Seller status: ${status} (use "Start Seller" to toggle)`;
-    });
-
-    // ----- PAYMENT PROCESS -----
-    let paymentActive = false;
-    paymentBtn.addEventListener('click', function() {
-      paymentActive = !paymentActive;
-      if (paymentActive) {
-        paymentFeedback.innerHTML = `<i class="fas fa-check-circle" style="color:#1d733d;"></i> Payment gateway active. Proceed with transaction.`;
-        paymentBtn.innerHTML = '<i class="fas fa-ban"></i> Abort Payment';
-        paymentBtn.style.background = '#ac6f3a';
-      } else {
-        paymentFeedback.innerHTML = `<i class="fas fa-times-circle"></i> Payment session ended.`;
-        paymentBtn.innerHTML = '<i class="fas fa-coins"></i> Proceed Payment';
-        paymentBtn.style.background = '#1f6e47';
-      }
-    });
-
-    paymentHistoryBtn.addEventListener('click', function() {
-      paymentFeedback.innerHTML = `<i class="fas fa-clock"></i> Showing recent payment history (demo) – last transaction: ₹499.00 (Griinar Churna)`;
-    });
-
-    // additional: click on product showcase (just feedback)
-    document.querySelector('.product-cta .btn')?.addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('🌿 Griinar Ayurveda – pure herbal products. Explore our range!');
-    });
-
-    // footer links demo (prevent navigation)
-    document.querySelectorAll('.footer-links a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const text = this.innerText.trim();
-        alert(`📄 ${text} – page will be displayed. (demo)`);
-      });
-    });
-
-    // logo click (fun)
-    document.querySelector('.logo-area')?.addEventListener('click', function() {
-      alert('🌱 Mera-Gide · your Ayurveda companion');
-    });
-
-  })();
-</script>
-
+<!-- disclaimer -->
+<div style="max-width:1300px; margin: 0 auto; padding: 0 20px 20px; font-size:0.8rem; color: #4e6b53;"><i class="fas fa-info-circle"></i> These products are not intended to diagnose, treat, or cure any disease. Please consult a healthcare professional before use.</div>
 </body>
 </html>
