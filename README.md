@@ -1,296 +1,1665 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>Mera-Gide · Green Ayurveda</title>
-  <!-- Tailwind via CDN + custom green theme -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body { background: #f7f9f6; font-family: 'Segoe UI', Roboto, system-ui, sans-serif; }
-    .mera-green { color: #2b6e3b; }
-    .mera-bg { background-color: #e4f0e0; }
-    .mera-border { border-color: #a6c8a0; }
-    .hover-green:hover { background-color: #2b6e3b; color: white; }
-    .card-shadow { box-shadow: 0 8px 20px rgba(43, 110, 59, 0.08); }
-    .nav-link { transition: all 0.2s; cursor: pointer; }
-    .nav-link:hover { color: #1e4f2a; }
-    .logo-leaf { color: #2b6e3b; }
-    .badge-pending { background: #fbbf24; color: #1e1e1e; }
-    .badge-approved { background: #22c55e; color: white; }
-    .badge-rejected { background: #ef4444; color: white; }
-    .product-card { transition: transform 0.2s; cursor: pointer; }
-    .product-card:hover { transform: scale(1.01); }
-    .hamburger-line { width: 24px; height: 2px; background: #1e3a2a; margin: 5px 0; }
-    .clickable { cursor: pointer; }
-    .toast-message { position: fixed; bottom: 20px; right: 20px; background: #2b6e3b; color: white; padding: 12px 24px; border-radius: 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; transition: all 0.3s; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Mera-Gide | Green Ayurveda</title>
+<meta name="description" content="Mera-Gide Green Ayurveda and Natural Products Marketplace">
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5faf6;
+color:#173b25
+}
+header{
+position:sticky;
+top:0;
+z-index:99;
+background:#fff;
+box-shadow:0 2px 12px #0002
+}
+.nav{
+max-width:1200px;
+margin:auto;
+padding:12px 18px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+.logo{
+display:flex;
+align-items:center;
+gap:9px;
+font-size:25px;
+font-weight:bold;
+color:#15733b
+}
+.logo span{
+width:43px;
+height:43px;
+border-radius:50%;
+background:#15733b;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white
+}
+nav{
+display:flex;
+gap:18px;
+align-items:center
+}
+nav a{
+cursor:pointer;
+font-weight:bold
+}
+nav a:hover{color:#15733b}
+.btn{
+border:0;
+border-radius:7px;
+padding:11px 18px;
+cursor:pointer;
+font-weight:bold
+}
+.green{
+background:#15733b;
+color:white
+}
+.outline{
+border:2px solid #15733b;
+background:white;
+color:#15733b
+}
+
+.hero{
+background:linear-gradient(120deg,#dff5e5,#fff);
+padding:80px 20px
+}
+.hero-inner{
+max-width:1200px;
+margin:auto
+}
+.hero h1{
+font-size:52px;
+margin:0 0 18px;
+color:#0d4c27
+}
+.hero p{
+font-size:19px;
+max-width:650px;
+line-height:1.7
+}
+.hero button{margin:7px}
+
+section{
+max-width:1200px;
+margin:auto;
+padding:55px 20px
+}
+.title{
+text-align:center;
+font-size:31px;
+margin-bottom:30px
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:15px
+}
+.cat{
+background:white;
+padding:25px 10px;
+text-align:center;
+border-radius:12px;
+box-shadow:0 3px 15px #0001;
+cursor:pointer
+}
+.cat div{font-size:35px;margin-bottom:8px}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px
+}
+.card{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 3px 15px #0001
+}
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+background:#e5f2e7
+}
+.card-body{padding:17px}
+.card h3{margin:0 0 8px}
+.card p{
+font-size:14px;
+color:#65736a;
+line-height:1.5
+}
+.price{
+font-size:21px;
+font-weight:bold;
+color:#15733b;
+margin:12px 0
+}
+.actions{
+display:flex;
+gap:7px
+}
+.actions button{
+flex:1;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold
+}
+
+.why{
+background:#e8f5eb;
+max-width:none
+}
+.why-grid{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px
+}
+.box{
+background:white;
+padding:25px;
+border-radius:12px;
+text-align:center
+}
+.box-icon{font-size:35px}
+
+.seller{
+background:linear-gradient(135deg,#0b4424,#238047);
+color:white;
+border-radius:18px;
+padding:45px;
+text-align:center
+}
+.seller h2{font-size:32px}
+
+footer{
+background:#0b2c19;
+color:white;
+margin-top:40px
+}
+.footer{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:30px
+}
+.footer a{
+display:block;
+color:#c9dccf;
+margin:9px 0;
+cursor:pointer
+}
+.copy{
+border-top:1px solid #345340;
+text-align:center;
+padding:17px;
+color:#bdd0c3
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:#0009;
+z-index:999;
+overflow:auto;
+padding:20px
+}
+.modal-box{
+background:white;
+max-width:720px;
+margin:40px auto;
+padding:27px;
+border-radius:14px;
+position:relative
+}
+.close{
+position:absolute;
+right:15px;
+top:10px;
+border:0;
+background:none;
+font-size:30px;
+cursor:pointer
+}
+.form{
+margin:13px 0
+}
+.form label{
+display:block;
+font-weight:bold;
+margin-bottom:5px
+}
+.form input,.form textarea,.form select{
+width:100%;
+padding:12px;
+border:1px solid #ccd8cf;
+border-radius:7px
+}
+.form textarea{min-height:100px}
+
+.dashboard-stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin:20px 0
+}
+.stat{
+background:#eaf5ed;
+padding:20px;
+border-radius:10px;
+border-left:4px solid #15733b
+}
+.stat b{
+display:block;
+font-size:25px;
+margin-top:6px
+}
+
+.table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px
+}
+.table th,.table td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:left
+}
+
+.search{
+display:block;
+width:100%;
+max-width:600px;
+margin:0 auto 25px;
+padding:14px;
+border:1px solid #ccd8cf;
+border-radius:8px
+}
+
+@media(max-width:900px){
+.categories{grid-template-columns:repeat(3,1fr)}
+.products{grid-template-columns:repeat(2,1fr)}
+.why-grid{grid-template-columns:repeat(2,1fr)}
+.footer{grid-template-columns:repeat(2,1fr)}
+.dashboard-stats{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+nav{display:none}
+.hero h1{font-size:37px}
+.categories{grid-template-columns:repeat(2,1fr)}
+.products{grid-template-columns:1fr}
+.why-grid{grid-template-columns:1fr}
+.footer{grid-template-columns:1fr}
+.dashboard-stats{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
 
-<!-- ========== HEADER ========== -->
-<header class="bg-white shadow-md sticky top-0 z-50 border-b border-mera-border">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20">
-    <!-- Logo + brand -->
-    <div class="flex items-center gap-2 clickable" onclick="showToast('🌿 Welcome to Mera-Gide')">
-      <div class="flex items-center">
-        <i class="fas fa-leaf text-3xl mera-green"></i>
-        <span class="text-2xl font-bold ml-1 mera-green tracking-tight">Mera-Gide</span>
-        <span class="hidden sm:inline text-xs ml-1 bg-mera-bg px-2 py-0.5 rounded-full text-gray-700">Ayurveda</span>
-      </div>
-    </div>
+<header>
+<div class="nav">
 
-    <!-- Desktop nav (hidden on mobile) -->
-    <nav class="hidden md:flex items-center gap-5 text-sm font-medium text-gray-700">
-      <a class="nav-link" onclick="showToast('🏠 Home')">Home</a>
-      <a class="nav-link" onclick="showToast('🛍️ Shop')">Shop</a>
-      <a class="nav-link" onclick="showToast('📂 Categories')">Categories</a>
-      <a class="nav-link" onclick="showToast('📖 About Us')">About</a>
-      <a class="nav-link" onclick="showToast('📞 Contact')">Contact</a>
-      <a class="nav-link mera-green font-semibold" onclick="showToast('👤 Seller Dashboard')">Seller</a>
-      <a class="nav-link" onclick="showToast('🔐 Login')"><i class="far fa-user"></i> Login</a>
-      <a class="nav-link relative" onclick="showToast('🛒 Cart')"><i class="fas fa-shopping-cart text-lg"></i><span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5">3</span></a>
-    </nav>
+<div class="logo">
+<span>🌿</span>
+Mera-Gide
+</div>
 
-    <!-- Search (desktop) -->
-    <div class="hidden md:flex items-center bg-mera-bg rounded-full px-4 py-1.5 w-56">
-      <i class="fas fa-search text-gray-500"></i>
-      <input type="text" placeholder="Search products..." class="bg-transparent outline-none ml-2 w-full text-sm" onkeydown="if(event.key==='Enter') showToast('🔍 Searching: '+this.value)">
-    </div>
+<nav>
+<a onclick="home()">Home</a>
+<a onclick="shop()">Shop</a>
+<a onclick="about()">About Us</a>
+<a onclick="contact()">Contact Us</a>
+<a onclick="seller()">Seller</a>
+<a onclick="admin()">Admin</a>
+<button class="btn green" onclick="cart()">🛒 Cart (<b id="count">0</b>)</button>
+</nav>
 
-    <!-- Mobile hamburger + icons -->
-    <div class="flex md:hidden items-center gap-4">
-      <i class="fas fa-search text-gray-700 text-lg clickable" onclick="showToast('🔍 Search')"></i>
-      <i class="fas fa-shopping-cart text-lg mera-green relative clickable" onclick="showToast('🛒 Cart')"><span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5">3</span></i>
-      <button id="hamburgerBtn" class="focus:outline-none">
-        <div class="hamburger-line"></div><div class="hamburger-line"></div><div class="hamburger-line"></div>
-      </button>
-    </div>
-  </div>
-  <!-- mobile menu (hidden) -->
-  <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-mera-border px-4 pb-4 flex flex-col gap-2 text-sm font-medium">
-    <a class="py-1 border-b border-gray-100 clickable" onclick="showToast('🏠 Home');toggleMobile()">Home</a>
-    <a class="py-1 border-b border-gray-100 clickable" onclick="showToast('🛍️ Shop');toggleMobile()">Shop</a>
-    <a class="py-1 border-b border-gray-100 clickable" onclick="showToast('📂 Categories');toggleMobile()">Categories</a>
-    <a class="py-1 border-b border-gray-100 clickable" onclick="showToast('📖 About');toggleMobile()">About</a>
-    <a class="py-1 border-b border-gray-100 clickable" onclick="showToast('📞 Contact');toggleMobile()">Contact</a>
-    <a class="py-1 border-b border-gray-100 text-mera-green font-bold clickable" onclick="showToast('👤 Seller');toggleMobile()">Seller</a>
-    <a class="py-1 clickable" onclick="showToast('🔐 Login');toggleMobile()"><i class="far fa-user mr-2"></i>Login</a>
-  </div>
+</div>
 </header>
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+<!-- HOME -->
 
-  <!-- ===== HERO ===== -->
-  <section class="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#e2f0da] to-[#c7dfbe] p-8 md:p-12 mb-12">
-    <div class="relative z-10 max-w-2xl">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">Natural Wellness. <span class="text-[#2b6e3b]">Trusted Ayurveda.</span></h1>
-      <p class="text-lg md:text-xl text-gray-700 mt-3">Discover Green Ayurveda products for your everyday wellness.</p>
-      <div class="flex flex-wrap gap-4 mt-6">
-        <a class="bg-[#2b6e3b] hover:bg-[#1f5230] text-white font-semibold px-8 py-3 rounded-full shadow-lg transition clickable" onclick="showToast('🛍️ Shop Now')">Shop Now</a>
-        <a class="bg-white text-[#2b6e3b] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-gray-50 transition clickable" onclick="showToast('📝 Become a Seller')">Become a Seller</a>
-      </div>
-    </div>
-    <div class="absolute right-0 bottom-0 opacity-20 text-9xl"><i class="fas fa-leaf"></i></div>
-  </section>
+<div class="hero" id="home">
 
-  <!-- ===== FEATURED CATEGORIES ===== -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-tags mera-green mr-2"></i> Featured Categories</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-      <div class="bg-white rounded-xl p-4 text-center shadow card-shadow hover:shadow-lg transition clickable" onclick="showToast('🌿 Herbal Products')"><i class="fas fa-seedling text-3xl mera-green"></i><p class="font-medium mt-1">Herbal</p></div>
-      <div class="bg-white rounded-xl p-4 text-center shadow card-shadow hover:shadow-lg transition clickable" onclick="showToast('🪷 Ayurveda')"><i class="fas fa-spa text-3xl mera-green"></i><p class="font-medium mt-1">Ayurveda</p></div>
-      <div class="bg-white rounded-xl p-4 text-center shadow card-shadow hover:shadow-lg transition clickable" onclick="showToast('💄 Natural Beauty')"><i class="fas fa-leaf text-3xl mera-green"></i><p class="font-medium mt-1">Natural Beauty</p></div>
-      <div class="bg-white rounded-xl p-4 text-center shadow card-shadow hover:shadow-lg transition clickable" onclick="showToast('🧴 Personal Care')"><i class="fas fa-hand-sparkles text-3xl mera-green"></i><p class="font-medium mt-1">Personal Care</p></div>
-      <div class="bg-white rounded-xl p-4 text-center shadow card-shadow hover:shadow-lg transition clickable" onclick="showToast('🌱 Herbal Wellness')"><i class="fas fa-mortar-pestle text-3xl mera-green"></i><p class="font-medium mt-1">Herbal Wellness</p></div>
-      <div class="bg-white rounded-xl p-4 text-center shadow card-shadow hover:shadow-lg transition clickable" onclick="showToast('🍎 Organic Products')"><i class="fas fa-apple-alt text-3xl mera-green"></i><p class="font-medium mt-1">Organic</p></div>
-    </div>
-  </section>
+<div class="hero-inner">
 
-  <!-- ===== FEATURED PRODUCTS ===== -->
-  <section class="mb-12">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-star text-yellow-500 mr-2"></i>Featured Products</h2>
-      <a class="text-mera-green font-medium clickable" onclick="showToast('🛍️ View All Products')">View All →</a>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- product card 1 -->
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Ashwagandha Root - ₹499')">
-        <div class="h-48 bg-mera-bg flex items-center justify-center text-5xl text-[#2b6e3b]"><i class="fas fa-leaf"></i></div>
-        <div class="p-4">
-          <h3 class="font-bold text-gray-800">Ashwagandha Root</h3>
-          <p class="text-sm text-gray-500">Pure herbal supplement</p>
-          <div class="flex items-center gap-2 mt-1"><span class="text-lg font-bold text-[#2b6e3b]">₹499</span><span class="text-sm line-through text-gray-400">₹799</span><span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-38%</span></div>
-          <div class="flex items-center text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span class="text-gray-500 ml-1">(124)</span></div>
-          <div class="flex items-center gap-2 mt-2"><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle"></i> In Stock</span></div>
-          <div class="flex gap-2 mt-3">
-            <button class="flex-1 bg-[#2b6e3b] text-white py-1.5 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')"><i class="fas fa-cart-plus mr-1"></i>Add</button>
-            <button class="flex-1 border border-[#2b6e3b] text-[#2b6e3b] py-1.5 rounded-full text-sm hover:bg-mera-bg transition" onclick="event.stopPropagation(); showToast('⚡ Buy Now')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-      <!-- product card 2 -->
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Triphala Churna - ₹299')">
-        <div class="h-48 bg-mera-bg flex items-center justify-center text-5xl text-[#2b6e3b]"><i class="fas fa-seedling"></i></div>
-        <div class="p-4">
-          <h3 class="font-bold text-gray-800">Triphala Churna</h3>
-          <p class="text-sm text-gray-500">Digestive wellness</p>
-          <div class="flex items-center gap-2 mt-1"><span class="text-lg font-bold text-[#2b6e3b]">₹299</span><span class="text-sm line-through text-gray-400">₹450</span><span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-33%</span></div>
-          <div class="flex items-center text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span class="text-gray-500 ml-1">(89)</span></div>
-          <div class="flex items-center gap-2 mt-2"><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle"></i> In Stock</span></div>
-          <div class="flex gap-2 mt-3">
-            <button class="flex-1 bg-[#2b6e3b] text-white py-1.5 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')"><i class="fas fa-cart-plus mr-1"></i>Add</button>
-            <button class="flex-1 border border-[#2b6e3b] text-[#2b6e3b] py-1.5 rounded-full text-sm hover:bg-mera-bg transition" onclick="event.stopPropagation(); showToast('⚡ Buy Now')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-      <!-- product card 3 -->
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Neem & Tulsi Soap - ₹199')">
-        <div class="h-48 bg-mera-bg flex items-center justify-center text-5xl text-[#2b6e3b]"><i class="fas fa-spa"></i></div>
-        <div class="p-4">
-          <h3 class="font-bold text-gray-800">Neem & Tulsi Soap</h3>
-          <p class="text-sm text-gray-500">Natural skin care</p>
-          <div class="flex items-center gap-2 mt-1"><span class="text-lg font-bold text-[#2b6e3b]">₹199</span><span class="text-sm line-through text-gray-400">₹299</span><span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-33%</span></div>
-          <div class="flex items-center text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span class="text-gray-500 ml-1">(210)</span></div>
-          <div class="flex items-center gap-2 mt-2"><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle"></i> In Stock</span></div>
-          <div class="flex gap-2 mt-3">
-            <button class="flex-1 bg-[#2b6e3b] text-white py-1.5 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')"><i class="fas fa-cart-plus mr-1"></i>Add</button>
-            <button class="flex-1 border border-[#2b6e3b] text-[#2b6e3b] py-1.5 rounded-full text-sm hover:bg-mera-bg transition" onclick="event.stopPropagation(); showToast('⚡ Buy Now')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-      <!-- product card 4 -->
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Brahmi Oil - ₹349')">
-        <div class="h-48 bg-mera-bg flex items-center justify-center text-5xl text-[#2b6e3b]"><i class="fas fa-mortar-pestle"></i></div>
-        <div class="p-4">
-          <h3 class="font-bold text-gray-800">Brahmi Oil</h3>
-          <p class="text-sm text-gray-500">Hair & scalp care</p>
-          <div class="flex items-center gap-2 mt-1"><span class="text-lg font-bold text-[#2b6e3b]">₹349</span><span class="text-sm line-through text-gray-400">₹500</span><span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-30%</span></div>
-          <div class="flex items-center text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span class="text-gray-500 ml-1">(67)</span></div>
-          <div class="flex items-center gap-2 mt-2"><span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle"></i> In Stock</span></div>
-          <div class="flex gap-2 mt-3">
-            <button class="flex-1 bg-[#2b6e3b] text-white py-1.5 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')"><i class="fas fa-cart-plus mr-1"></i>Add</button>
-            <button class="flex-1 border border-[#2b6e3b] text-[#2b6e3b] py-1.5 rounded-full text-sm hover:bg-mera-bg transition" onclick="event.stopPropagation(); showToast('⚡ Buy Now')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<h1>Natural Wellness.<br>Trusted Ayurveda.</h1>
 
-  <!-- ===== WHY CHOOSE ===== -->
-  <section class="bg-white rounded-2xl p-8 shadow card-shadow mb-12">
-    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6"><i class="fas fa-check-circle mera-green"></i> Why Mera-Gide?</h2>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
-      <div class="clickable" onclick="showToast('🌿 Natural Selection')"><i class="fas fa-leaf text-3xl mera-green"></i><p class="font-medium mt-1">Natural Selection</p></div>
-      <div class="clickable" onclick="showToast('🤝 Trusted Sellers')"><i class="fas fa-handshake text-3xl mera-green"></i><p class="font-medium mt-1">Trusted Sellers</p></div>
-      <div class="clickable" onclick="showToast('🔒 Secure Payments')"><i class="fas fa-lock text-3xl mera-green"></i><p class="font-medium mt-1">Secure Payments</p></div>
-      <div class="clickable" onclick="showToast('🚚 Easy Ordering')"><i class="fas fa-truck text-3xl mera-green"></i><p class="font-medium mt-1">Easy Ordering</p></div>
-      <div class="clickable" onclick="showToast('🎧 Customer Support')"><i class="fas fa-headset text-3xl mera-green"></i><p class="font-medium mt-1">Customer Support</p></div>
-    </div>
-  </section>
+<p>
+Discover Green Ayurveda, herbal and natural wellness products
+from trusted sellers on Mera-Gide.
+</p>
 
-  <!-- ===== SELLER CTA ===== -->
-  <section class="bg-gradient-to-r from-[#d4e8ce] to-[#b8d6ae] rounded-2xl p-8 md:p-12 text-center mb-12">
-    <h2 class="text-3xl font-bold text-gray-800">🌿 Sell Your Green Ayurveda Products on Mera-Gide</h2>
-    <p class="text-lg text-gray-700 mt-2">Reach thousands of wellness seekers.</p>
-    <a class="inline-block mt-4 bg-[#2b6e3b] hover:bg-[#1f5230] text-white font-semibold px-10 py-3 rounded-full shadow-lg transition clickable" onclick="showToast('📝 Seller Registration')">Become a Seller</a>
-  </section>
+<button class="btn green" onclick="shop()">Shop Now</button>
+<button class="btn outline" onclick="seller()">Become a Seller</button>
 
-  <!-- ===== SHOP / PRODUCT GRID (demo) ===== -->
-  <section class="mb-8">
-    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-      <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-store mera-green"></i> Shop</h2>
-      <div class="flex flex-wrap gap-2 text-sm">
-        <select class="bg-white border border-mera-border rounded-full px-3 py-1.5" onchange="showToast('📂 Category: '+this.value)"><option>All Categories</option><option>Herbal</option><option>Ayurveda</option></select>
-        <select class="bg-white border border-mera-border rounded-full px-3 py-1.5" onchange="showToast('📊 Sort: '+this.value)"><option>Price: Low to High</option><option>Price: High to Low</option></select>
-        <button class="bg-mera-bg px-4 py-1.5 rounded-full text-gray-700 border border-mera-border clickable" onclick="showToast('🔍 Filter applied')"><i class="fas fa-filter"></i> Filter</button>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Amla Powder - ₹249')"><div class="h-40 bg-mera-bg flex items-center justify-center text-4xl text-[#2b6e3b]"><i class="fas fa-seedling"></i></div><div class="p-3"><h4 class="font-bold">Amla Powder</h4><div class="flex items-center gap-2"><span class="font-bold text-[#2b6e3b]">₹249</span><span class="text-xs line-through">₹399</span></div><button class="w-full mt-2 bg-[#2b6e3b] text-white py-1 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')">Add to Cart</button></div></div>
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Shilajit Resin - ₹699')"><div class="h-40 bg-mera-bg flex items-center justify-center text-4xl text-[#2b6e3b]"><i class="fas fa-spa"></i></div><div class="p-3"><h4 class="font-bold">Shilajit Resin</h4><div class="flex items-center gap-2"><span class="font-bold text-[#2b6e3b]">₹699</span><span class="text-xs line-through">₹999</span></div><button class="w-full mt-2 bg-[#2b6e3b] text-white py-1 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')">Add to Cart</button></div></div>
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Tulsi Drops - ₹179')"><div class="h-40 bg-mera-bg flex items-center justify-center text-4xl text-[#2b6e3b]"><i class="fas fa-leaf"></i></div><div class="p-3"><h4 class="font-bold">Tulsi Drops</h4><div class="flex items-center gap-2"><span class="font-bold text-[#2b6e3b]">₹179</span><span class="text-xs line-through">₹250</span></div><button class="w-full mt-2 bg-[#2b6e3b] text-white py-1 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')">Add to Cart</button></div></div>
-      <div class="bg-white rounded-2xl shadow card-shadow overflow-hidden product-card" onclick="showToast('📦 Moringa Caps - ₹399')"><div class="h-40 bg-mera-bg flex items-center justify-center text-4xl text-[#2b6e3b]"><i class="fas fa-mortar-pestle"></i></div><div class="p-3"><h4 class="font-bold">Moringa Caps</h4><div class="flex items-center gap-2"><span class="font-bold text-[#2b6e3b]">₹399</span><span class="text-xs line-through">₹550</span></div><button class="w-full mt-2 bg-[#2b6e3b] text-white py-1 rounded-full text-sm hover:bg-[#1f5230] transition" onclick="event.stopPropagation(); showToast('🛒 Added to Cart')">Add to Cart</button></div></div>
-    </div>
-  </section>
+</div>
+</div>
 
-  <!-- ===== ADMIN / SELLER DASHBOARD preview (interactive) ===== -->
-  <div class="grid md:grid-cols-3 gap-6 mb-8 p-4 bg-white rounded-2xl shadow card-shadow border border-mera-border">
-    <div class="text-center clickable" onclick="showToast('📦 Total Products: 12')"><span class="text-2xl font-bold mera-green">12</span><p class="text-gray-600">Total Products</p></div>
-    <div class="text-center clickable" onclick="showToast('⏳ Pending Approval: 3')"><span class="text-2xl font-bold text-yellow-500">3</span><p class="text-gray-600">Pending Approval</p></div>
-    <div class="text-center clickable" onclick="showToast('💰 Total Sales: ₹24,500')"><span class="text-2xl font-bold text-green-600">₹24.5K</span><p class="text-gray-600">Total Sales</p></div>
-  </div>
+<!-- CATEGORY -->
 
-  <!-- ===== DISCLAIMER ===== -->
-  <div class="text-xs text-gray-500 border-t border-gray-200 pt-6 mt-6 italic">
-    <i class="fas fa-info-circle"></i> Ayurvedic products are not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before use.
-  </div>
-</main>
+<section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="bg-[#1e3a2a] text-white mt-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-    <div><h4 class="font-bold text-lg flex items-center clickable" onclick="showToast('🌿 Mera-Gide')"><i class="fas fa-leaf mr-2"></i>Mera-Gide</h4><p class="text-sm text-gray-300 mt-2">Green Ayurveda marketplace</p></div>
-    <div><h5 class="font-semibold">Quick</h5><ul class="text-sm text-gray-300 space-y-1 mt-2"><li class="clickable" onclick="showToast('🏠 Home')">Home</li><li class="clickable" onclick="showToast('🛍️ Shop')">Shop</li><li class="clickable" onclick="showToast('📖 About')">About</li><li class="clickable" onclick="showToast('📞 Contact')">Contact</li></ul></div>
-    <div><h5 class="font-semibold">Customer</h5><ul class="text-sm text-gray-300 space-y-1 mt-2"><li class="clickable" onclick="showToast('👤 My Account')">My Account</li><li class="clickable" onclick="showToast('📦 My Orders')">My Orders</li><li class="clickable" onclick="showToast('🛒 Cart')">Cart</li></ul></div>
-    <div><h5 class="font-semibold">Legal</h5><ul class="text-sm text-gray-300 space-y-1 mt-2"><li class="clickable" onclick="showToast('📜 Terms')">Terms</li><li class="clickable" onclick="showToast('🔒 Privacy')">Privacy</li><li class="clickable" onclick="showToast('↩️ Returns')">Returns</li><li class="clickable" onclick="showToast('🚚 Shipping')">Shipping</li></ul></div>
-  </div>
-  <div class="border-t border-gray-600 text-center text-sm text-gray-300 py-4 flex flex-wrap justify-center gap-4">
-    <span>© 2026 Mera-Gide. All rights reserved.</span>
-    <span>
-      <i class="fab fa-instagram clickable" onclick="showToast('📸 Instagram')"></i> 
-      <i class="fab fa-facebook ml-2 clickable" onclick="showToast('📘 Facebook')"></i> 
-      <i class="fab fa-youtube ml-2 clickable" onclick="showToast('▶️ YouTube')"></i>
-    </span>
-  </div>
+<h2 class="title">Shop by Category</h2>
+
+<div class="categories">
+
+<div class="cat" onclick="filter('Ayurveda')">
+<div>🌿</div>Ayurveda
+</div>
+
+<div class="cat" onclick="filter('Herbal')">
+<div>🍃</div>Herbal
+</div>
+
+<div class="cat" onclick="filter('Beauty')">
+<div>🌸</div>Natural Beauty
+</div>
+
+<div class="cat" onclick="filter('Personal Care')">
+<div>🧴</div>Personal Care
+</div>
+
+<div class="cat" onclick="filter('Wellness')">
+<div>🌱</div>Wellness
+</div>
+
+<div class="cat" onclick="filter('Organic')">
+<div>🌾</div>Organic
+</div>
+
+</div>
+</section>
+
+<!-- SHOP -->
+
+<section id="shop">
+
+<h2 class="title">Green Ayurveda Products</h2>
+
+<input
+class="search"
+id="search"
+placeholder="🔎 Search products..."
+onkeyup="searchProducts()">
+
+<div class="products" id="products"></div>
+
+</section>
+
+<!-- WHY -->
+
+<div class="why">
+
+<section>
+
+<h2 class="title">Why Choose Mera-Gide?</h2>
+
+<div class="why-grid">
+
+<div class="box">
+<div class="box-icon">🌿</div>
+<h3>Natural Products</h3>
+<p>Green Ayurveda and natural wellness products.</p>
+</div>
+
+<div class="box">
+<div class="box-icon">🤝</div>
+<h3>Trusted Sellers</h3>
+<p>Seller products can be reviewed before publishing.</p>
+</div>
+
+<div class="box">
+<div class="box-icon">🔒</div>
+<h3>Secure Shopping</h3>
+<p>Simple and secure checkout experience.</p>
+</div>
+
+<div class="box">
+<div class="box-icon">📦</div>
+<h3>Easy Ordering</h3>
+<p>Simple product and order management.</p>
+</div>
+
+</div>
+
+</section>
+</div>
+
+<!-- SELLER CTA -->
+
+<section>
+
+<div class="seller">
+
+<h2>Sell Your Green Ayurveda Products</h2>
+
+<p>
+Join Mera-Gide and showcase your herbal and natural products.
+</p>
+
+<button class="btn" style="background:white;color:#15733b"
+onclick="seller()">
+Become a Seller
+</button>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer">
+
+<div>
+<h2>🌿 Mera-Gide</h2>
+<p>Green Ayurveda & Natural Products Marketplace.</p>
+</div>
+
+<div>
+<h3>Quick Links</h3>
+<a onclick="home()">Home</a>
+<a onclick="shop()">Shop</a>
+<a onclick="about()">About Us</a>
+<a onclick="contact()">Contact Us</a>
+</div>
+
+<div>
+<h3>Seller</h3>
+<a onclick="seller()">Seller Registration</a>
+<a onclick="seller()">Seller Login</a>
+<a onclick="admin()">Admin Login</a>
+</div>
+
+<div>
+<h3>Legal</h3>
+<a onclick="terms()">Terms & Conditions</a>
+<a onclick="privacy()">Privacy Policy</a>
+<a onclick="refund()">Return & Refund</a>
+<a onclick="shipping()">Shipping Policy</a>
+</div>
+
+</div>
+
+<div class="copy">
+© 2026 Mera-Gide. All Rights Reserved.
+</div>
+
 </footer>
 
-<!-- Toast notification -->
-<div id="toast" class="toast-message" style="display: none; transform: translateY(20px); opacity: 0;"></div>
+<!-- SELLER MODAL -->
+
+<div class="modal" id="sellerModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('sellerModal')">×</button>
+
+<h2>🌿 Seller Registration</h2>
+
+<p>
+Seller registration के बाद product Admin approval के लिए जाएगा।
+</p>
+
+<div class="form">
+<label>Seller Name</label>
+<input id="sname">
+</div>
+
+<div class="form">
+<label>Business / Brand Name</label>
+<input id="brand">
+</div>
+
+<div class="form">
+<label>Email</label>
+<input type="email" id="semail">
+</div>
+
+<div class="form">
+<label>Mobile</label>
+<input id="smobile">
+</div>
+
+<div class="form">
+<label>Password</label>
+<input type="password" id="spassword">
+</div>
+
+<button class="btn green" onclick="registerSeller()">
+Register Seller
+</button>
+
+<hr>
+
+<h3>Seller Login</h3>
+
+<div class="form">
+<input id="lemail" type="email" placeholder="Seller Email">
+</div>
+
+<div class="form">
+<input id="lpassword" type="password" placeholder="Password">
+</div>
+
+<button class="btn green" onclick="sellerLogin()">
+Seller Login
+</button>
+
+</div>
+</div>
+
+<!-- ADMIN LOGIN -->
+
+<div class="modal" id="adminModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('adminModal')">×</button>
+
+<h2>🔐 Admin Login</h2>
+
+<div style="background:#fff8d9;padding:15px;border-left:4px solid #d89a1d">
+Demo Login:<br>
+Email: <b>admin@mera-gide.com</b><br>
+Password: <b>admin123</b>
+</div>
+
+<div class="form">
+<label>Email</label>
+<input type="email" id="aemail">
+</div>
+
+<div class="form">
+<label>Password</label>
+<input type="password" id="apassword">
+</div>
+
+<button class="btn green" onclick="adminLogin()">
+Admin Login
+</button>
+
+</div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+
+<div class="modal" id="adminPanel">
+
+<div class="modal-box" style="max-width:1000px">
+
+<button class="close" onclick="closeModal('adminPanel')">×</button>
+
+<h2>⚙️ Mera-Gide Admin Dashboard</h2>
+
+<div class="dashboard-stats">
+
+<div class="stat">
+Sellers
+<b id="sellerCount">0</b>
+</div>
+
+<div class="stat">
+Products
+<b id="productCount">0</b>
+</div>
+
+<div class="stat">
+Pending
+<b id="pendingCount">0</b>
+</div>
+
+<div class="stat">
+Orders
+<b id="orderCount">0</b>
+</div>
+
+</div>
+
+<button class="btn green" onclick="adminProducts()">
+Product Management
+</button>
+
+<button class="btn outline" onclick="addProduct()">
++ Add Product
+</button>
+
+<button class="btn outline" onclick="orders()">
+Orders
+</button>
+
+<div id="adminContent" style="margin-top:25px"></div>
+
+</div>
+</div>
+
+<!-- ADD PRODUCT -->
+
+<div class="modal" id="productModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('productModal')">×</button>
+
+<h2>📦 Upload Product</h2>
+
+<div class="form">
+<label>Product Name</label>
+<input id="pname">
+</div>
+
+<div class="form">
+<label>Category</label>
+<select id="pcat">
+<option>Ayurveda</option>
+<option>Herbal</option>
+<option>Beauty</option>
+<option>Personal Care</option>
+<option>Wellness</option>
+<option>Organic</option>
+</select>
+</div>
+
+<div class="form">
+<label>Product Image</label>
+<input type="file" id="pimage" accept="image/*">
+</div>
+
+<div class="form">
+<label>Description</label>
+<textarea id="pdesc"></textarea>
+</div>
+
+<div class="form">
+<label>Ingredients</label>
+<textarea id="ping"></textarea>
+</div>
+
+<div class="form">
+<label>Benefits</label>
+<textarea id="pbenefits"></textarea>
+</div>
+
+<div class="form">
+<label>Price ₹</label>
+<input type="number" id="pprice">
+</div>
+
+<div class="form">
+<label>Stock</label>
+<input type="number" id="pstock">
+</div>
+
+<button class="btn green" onclick="saveProduct()">
+Submit Product for Approval
+</button>
+
+</div>
+</div>
+
+<!-- GENERAL MODAL -->
+
+<div class="modal" id="infoModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('infoModal')">×</button>
+
+<div id="info"></div>
+
+</div>
+</div>
+
 
 <script>
-  // Mobile hamburger toggle
-  document.getElementById('hamburgerBtn')?.addEventListener('click', function() {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-  });
-  function toggleMobile() {
-    document.getElementById('mobileMenu')?.classList.add('hidden');
-  }
 
-  // Toast system
-  let toastTimeout;
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.style.display = 'block';
-    toast.style.transform = 'translateY(0)';
-    toast.style.opacity = '1';
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-      toast.style.transform = 'translateY(20px)';
-      toast.style.opacity = '0';
-      setTimeout(() => { toast.style.display = 'none'; }, 300);
-    }, 2200);
-  }
+/* PRODUCT DATABASE */
 
-  // Click feedback for all interactive elements (optional)
-  document.querySelectorAll('.clickable, .nav-link, button, select, .product-card').forEach(el => {
-    if (!el.onclick) {
-      el.addEventListener('click', function(e) {
-        // if it doesn't have its own handler, we can add a subtle feedback
-        if (!this.dataset.toast && !this.closest('.product-card')?.dataset.toast) {
-          // only if not already handled
-        }
-      });
-    }
-  });
+let productsData =
+JSON.parse(localStorage.getItem("meraGideProducts")) || [
 
-  // Quick demo: show toast on page load
-  window.addEventListener('load', () => {
-    setTimeout(() => showToast('🌿 Welcome to Mera-Gide!'), 400);
-  });
+{
+id:1,
+name:"Green Herbal Wellness",
+category:"Herbal",
+price:499,
+stock:20,
+image:"https://images.unsplash.com/photo-1611073764950-0b8b1b4a3c7d?auto=format&fit=crop&w=800&q=80",
+description:"Natural herbal wellness product.",
+status:"approved"
+},
+
+{
+id:2,
+name:"Ayurvedic Herbal Care",
+category:"Ayurveda",
+price:699,
+stock:15,
+image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+description:"Ayurvedic inspired natural care product.",
+status:"approved"
+},
+
+{
+id:3,
+name:"Natural Beauty Care",
+category:"Beauty",
+price:399,
+stock:30,
+image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80",
+description:"Natural beauty care product.",
+status:"approved"
+}
+
+];
+
+let cartData =
+JSON.parse(localStorage.getItem("meraGideCart")) || [];
+
+
+/* DISPLAY */
+
+function displayProducts(list=productsData){
+
+let box=document.getElementById("products");
+
+let approved=list.filter(p=>p.status==="approved");
+
+if(!approved.length){
+box.innerHTML="<p>No products found.</p>";
+return;
+}
+
+box.innerHTML=approved.map(p=>`
+
+<div class="card">
+
+<img src="${p.image}" alt="${p.name}">
+
+<div class="card-body">
+
+<h3>${safe(p.name)}</h3>
+
+<p>${safe(p.description)}</p>
+
+<div class="price">₹${p.price}</div>
+
+<div class="actions">
+
+<button class="outline"
+onclick="addCart(${p.id})">
+Add Cart
+</button>
+
+<button class="green"
+onclick="buy(${p.id})">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+let q=document.getElementById("search").value.toLowerCase();
+
+displayProducts(
+productsData.filter(p=>
+p.name.toLowerCase().includes(q) ||
+p.category.toLowerCase().includes(q)
+)
+);
+
+}
+
+
+/* CATEGORY */
+
+function filter(cat){
+
+displayProducts(
+productsData.filter(p=>
+p.category===cat &&
+p.status==="approved"
+)
+);
+
+shop();
+
+}
+
+
+/* CART */
+
+function addCart(id){
+
+let p=productsData.find(x=>x.id===id);
+
+if(!p)return;
+
+cartData.push(p);
+
+localStorage.setItem(
+"meraGideCart",
+JSON.stringify(cartData)
+);
+
+updateCart();
+
+alert("Product added to cart.");
+
+}
+
+
+function buy(id){
+
+cartData=[];
+
+addCart(id);
+
+checkout();
+
+}
+
+
+function updateCart(){
+
+document.getElementById("count").innerText=
+cartData.length;
+
+}
+
+
+function cart(){
+
+let html="";
+
+if(!cartData.length){
+
+html="<p>Your cart is empty.</p>";
+
+}else{
+
+html=cartData.map((p,i)=>`
+
+<div style="padding:12px;border-bottom:1px solid #ddd">
+
+<b>${safe(p.name)}</b>
+
+<span style="float:right">₹${p.price}</span>
+
+<button
+style="margin-top:7px"
+onclick="removeCart(${i})">
+Remove
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+showInfo(`
+<h2>🛒 Shopping Cart</h2>
+
+${html}
+
+<hr>
+
+<h3>
+Total: ₹${cartData.reduce((a,p)=>a+Number(p.price),0)}
+</h3>
+
+<button class="btn green"
+onclick="checkout()">
+Proceed to Payment
+</button>
+`);
+
+}
+
+
+function removeCart(i){
+
+cartData.splice(i,1);
+
+localStorage.setItem(
+"meraGideCart",
+JSON.stringify(cartData)
+);
+
+updateCart();
+
+cart();
+
+}
+
+
+/* CHECKOUT */
+
+function checkout(){
+
+if(!cartData.length){
+
+alert("Cart is empty.");
+return;
+
+}
+
+let total=cartData.reduce(
+(a,p)=>a+Number(p.price),0
+);
+
+showInfo(`
+
+<h2>💳 Checkout</h2>
+
+<div class="form">
+<label>Customer Name</label>
+<input id="customer">
+</div>
+
+<div class="form">
+<label>Mobile Number</label>
+<input id="mobile">
+</div>
+
+<div class="form">
+<label>Delivery Address</label>
+<textarea id="address"></textarea>
+</div>
+
+<div style="
+background:#eaf5ed;
+padding:20px;
+border-radius:10px;
+text-align:center">
+
+<h3>Payment</h3>
+
+<p>UPI / QR Payment</p>
+
+<div style="font-size:65px">▦</div>
+
+<p>
+Admin can replace this demo QR
+with the official payment QR.
+</p>
+
+<h3>Total: ₹${total}</h3>
+
+</div>
+
+<button class="btn green"
+style="width:100%;margin-top:20px"
+onclick="placeOrder()">
+Proceed to Payment
+</button>
+
+`);
+
+}
+
+
+function placeOrder(){
+
+let name=document.getElementById("customer").value;
+let mobile=document.getElementById("mobile").value;
+let address=document.getElementById("address").value;
+
+if(!name||!mobile||!address){
+
+alert("Please complete all details.");
+return;
+
+}
+
+let ordersData =
+JSON.parse(localStorage.getItem("meraGideOrders")) || [];
+
+let total=cartData.reduce(
+(a,p)=>a+Number(p.price),0
+);
+
+let id="MG"+Date.now();
+
+ordersData.push({
+
+id:id,
+customer:name,
+mobile:mobile,
+address:address,
+products:cartData.map(p=>p.name),
+total:total,
+status:"Payment Pending",
+date:new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+"meraGideOrders",
+JSON.stringify(ordersData)
+);
+
+cartData=[];
+
+localStorage.setItem(
+"meraGideCart",
+JSON.stringify(cartData)
+);
+
+updateCart();
+
+showInfo(`
+
+<div style="text-align:center">
+
+<div style="font-size:60px">✅</div>
+
+<h2>Order Created Successfully</h2>
+
+<p>Order ID: <b>${id}</b></p>
+
+<p>Payment Status: <b>Pending</b></p>
+
+<p>
+Please complete payment using the configured
+UPI/payment method.
+</p>
+
+</div>
+
+`);
+
+}
+
+
+/* SELLER */
+
+function seller(){
+
+document.getElementById("sellerModal").style.display="block";
+
+}
+
+
+function registerSeller(){
+
+let sellers=
+JSON.parse(localStorage.getItem("meraGideSellers"))||[];
+
+sellers.push({
+
+name:document.getElementById("sname").value,
+brand:document.getElementById("brand").value,
+email:document.getElementById("semail").value,
+mobile:document.getElementById("smobile").value,
+password:document.getElementById("spassword").value,
+status:"Pending"
+
+});
+
+localStorage.setItem(
+"meraGideSellers",
+JSON.stringify(sellers)
+);
+
+alert(
+"Seller registration submitted. Admin approval required."
+);
+
+closeModal("sellerModal");
+
+}
+
+
+function sellerLogin(){
+
+let email=document.getElementById("lemail").value;
+let password=document.getElementById("lpassword").value;
+
+let sellers=
+JSON.parse(localStorage.getItem("meraGideSellers"))||[];
+
+let s=sellers.find(x=>
+x.email===email &&
+x.password===password
+);
+
+if(!s){
+
+alert("Invalid seller login.");
+return;
+
+}
+
+if(s.status!=="Approved"){
+
+alert("Seller account is waiting for Admin approval.");
+return;
+
+}
+
+alert("Seller login successful.");
+
+}
+
+
+/* ADMIN */
+
+function admin(){
+
+document.getElementById("adminModal").style.display="block";
+
+}
+
+
+function adminLogin(){
+
+let email=document.getElementById("aemail").value;
+let password=document.getElementById("apassword").value;
+
+if(
+email==="admin@mera-gide.com" &&
+password==="admin123"
+){
+
+closeModal("adminModal");
+
+document.getElementById("adminPanel").style.display="block";
+
+refreshAdmin();
+
+}else{
+
+alert("Invalid Admin Login.");
+
+}
+
+}
+
+
+function refreshAdmin(){
+
+let sellers=
+JSON.parse(localStorage.getItem("meraGideSellers"))||[];
+
+let ordersData=
+JSON.parse(localStorage.getItem("meraGideOrders"))||[];
+
+document.getElementById("sellerCount").innerText=sellers.length;
+
+document.getElementById("productCount").innerText=
+productsData.length;
+
+document.getElementById("pendingCount").innerText=
+productsData.filter(p=>p.status==="pending").length;
+
+document.getElementById("orderCount").innerText=
+ordersData.length;
+
+adminProducts();
+
+}
+
+
+/* ADMIN PRODUCT */
+
+function adminProducts(){
+
+let html=`
+
+<h3>Product Management</h3>
+
+<table class="table">
+
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+`;
+
+productsData.forEach(p=>{
+
+html+=`
+
+<tr>
+
+<td>${safe(p.name)}</td>
+
+<td>₹${p.price}</td>
+
+<td>${p.status}</td>
+
+<td>
+
+${
+p.status==="pending"
+
+?
+
+`
+<button class="btn green"
+onclick="approve(${p.id})">
+Approve
+</button>
+
+<button class="btn"
+onclick="reject(${p.id})">
+Reject
+</button>
+`
+
+:
+
+`
+<button class="btn"
+onclick="deleteProduct(${p.id})">
+Delete
+</button>
+`
+}
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+html+="</table>";
+
+document.getElementById("adminContent").innerHTML=html;
+
+}
+
+
+function approve(id){
+
+let p=productsData.find(x=>x.id===id);
+
+if(p){
+
+p.status="approved";
+
+saveProducts();
+
+alert("Product Approved.");
+
+refreshAdmin();
+
+displayProducts();
+
+}
+
+}
+
+
+function reject(id){
+
+let p=productsData.find(x=>x.id===id);
+
+if(p){
+
+p.status="rejected";
+
+saveProducts();
+
+alert("Product Rejected.");
+
+refreshAdmin();
+
+}
+
+}
+
+
+function deleteProduct(id){
+
+if(!confirm("Delete product?"))return;
+
+productsData=
+productsData.filter(p=>p.id!==id);
+
+saveProducts();
+
+refreshAdmin();
+
+displayProducts();
+
+}
+
+
+/* ADD PRODUCT */
+
+function addProduct(){
+
+closeModal("adminPanel");
+
+document.getElementById("productModal").style.display="block";
+
+}
+
+
+function saveProduct(){
+
+let file=document.getElementById("pimage").files[0];
+
+if(!file){
+
+alert("Please upload product image.");
+return;
+
+}
+
+let reader=new FileReader();
+
+reader.onload=function(){
+
+let p={
+
+id:Date.now(),
+
+name:document.getElementById("pname").value,
+
+category:document.getElementById("pcat").value,
+
+image:reader.result,
+
+description:document.getElementById("pdesc").value,
+
+ingredients:document.getElementById("ping").value,
+
+benefits:document.getElementById("pbenefits").value,
+
+price:Number(document.getElementById("pprice").value),
+
+stock:Number(document.getElementById("pstock").value),
+
+status:"pending"
+
+};
+
+productsData.push(p);
+
+saveProducts();
+
+alert(
+"Product uploaded successfully and sent for Admin approval."
+);
+
+closeModal("productModal");
+
+document.getElementById("adminPanel").style.display="block";
+
+refreshAdmin();
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+
+function saveProducts(){
+
+localStorage.setItem(
+"meraGideProducts",
+JSON.stringify(productsData)
+);
+
+}
+
+
+/* ORDERS */
+
+function orders(){
+
+let data=
+JSON.parse(localStorage.getItem("meraGideOrders"))||[];
+
+let html="<h3>Orders</h3>";
+
+if(!data.length){
+
+html+="<p>No orders yet.</p>";
+
+}else{
+
+data.forEach(o=>{
+
+html+=`
+
+<div style="
+padding:15px;
+border:1px solid #ddd;
+border-radius:8px;
+margin:10px 0">
+
+<b>${o.id}</b><br>
+Customer: ${safe(o.customer)}<br>
+Total: ₹${o.total}<br>
+Status: <b>${o.status}</b>
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("adminContent").innerHTML=html;
+
+}
+
+
+/* INFORMATION */
+
+function about(){
+
+showInfo(`
+
+<h2>About Mera-Gide</h2>
+
+<p style="line-height:1.8">
+
+Mera-Gide is a Green Ayurveda marketplace designed
+to connect customers with sellers of herbal,
+natural and wellness products.
+
+Our goal is to provide a simple and convenient
+online shopping experience.
+
+</p>
+
+`);
+
+}
+
+
+function contact(){
+
+showInfo(`
+
+<h2>Contact Us</h2>
+
+<div class="form">
+<label>Name</label>
+<input placeholder="Your Name">
+</div>
+
+<div class="form">
+<label>Email</label>
+<input type="email" placeholder="Your Email">
+</div>
+
+<div class="form">
+<label>Message</label>
+<textarea placeholder="Your Message"></textarea>
+</div>
+
+<button class="btn green"
+onclick="alert('Message submitted.')">
+Send Message
+</button>
+
+`);
+
+}
+
+
+function terms(){
+
+showInfo(`
+<h2>Terms and Conditions</h2>
+<p style="line-height:1.8">
+Users must provide accurate information.
+Sellers are responsible for the products they list.
+Mera-Gide may review, approve, reject or remove
+product listings.
+</p>
+`);
+
+}
+
+
+function privacy(){
+
+showInfo(`
+<h2>Privacy Policy</h2>
+<p style="line-height:1.8">
+Mera-Gide respects user privacy.
+Information should be used only for legitimate
+shopping, seller, order and support purposes.
+</p>
+`);
+
+}
+
+
+function refund(){
+
+showInfo(`
+<h2>Return & Refund Policy</h2>
+<p style="line-height:1.8">
+Returns and refunds are subject to the applicable
+seller policy and applicable consumer rules.
+</p>
+`);
+
+}
+
+
+function shipping(){
+
+showInfo(`
+<h2>Shipping Policy</h2>
+<p style="line-height:1.8">
+Shipping charges and delivery times may vary
+according to seller and delivery location.
+</p>
+`);
+
+}
+
+
+/* HELPERS */
+
+function showInfo(content){
+
+document.getElementById("info").innerHTML=content;
+
+document.getElementById("infoModal").style.display="block";
+
+}
+
+
+function closeModal(id){
+
+document.getElementById(id).style.display="none";
+
+}
+
+
+function shop(){
+
+document.getElementById("shop").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function home(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function safe(t){
+
+return String(t)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* START */
+
+displayProducts();
+updateCart();
+
 </script>
 
 </body>
